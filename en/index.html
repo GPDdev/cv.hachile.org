@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A research and engineering resume covering awards, technical skills, project experience, and personal strengths.">
+  <link rel="canonical" href="https://cv.hachile.org/en/">
+  <title>Resume | Research Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #14213d;
+      --muted: #52617a;
+      --accent: #2156a5;
+      --accent-soft: #e9f0fb;
+      --line: #d8e1ef;
+      --paper: #ffffff;
+      --page: #f3f6fa;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgb(33 86 165 / 5%) 0, transparent 32rem),
+        var(--page);
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: var(--accent); text-underline-offset: 0.22em; }
+    a:hover { text-decoration-thickness: 2px; }
+    .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 10; padding: .6rem 1rem; background: var(--ink); color: white; }
+    .skip-link:focus { top: 1rem; }
+
+    .page {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 1.5rem auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 70px rgb(20 33 61 / 10%);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem clamp(1.25rem, 4vw, 3.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand, .home-link { font-size: .9rem; font-weight: 700; letter-spacing: .04em; text-decoration: none; }
+    .brand { color: var(--ink); }
+    .home-link { padding: .45rem .8rem; border: 1px solid var(--line); border-radius: 999px; }
+    .home-link:hover { background: var(--accent-soft); border-color: #afc4e5; }
+
+    main { padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 6vw, 5.5rem); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(16rem, .65fr); gap: clamp(2rem, 6vw, 5rem); align-items: end; padding-bottom: clamp(2.5rem, 6vw, 5rem); }
+    .hero > *, .section-body, .facts, .facts > * { min-width: 0; }
+    .eyebrow, .section-kicker { margin: 0 0 .7rem; color: var(--accent); font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(3.4rem, 9vw, 7.8rem); font-weight: 500; letter-spacing: -.06em; line-height: .95; }
+    .headline { display: flex; flex-wrap: wrap; gap: .15rem .55rem; margin: 1.2rem 0 0; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.35rem); }
+    .headline span { flex: 0 0 auto; }
+    .headline span + span::before { content: "·"; margin-right: .55rem; }
+    .research-note { margin: 1rem 0 0; max-width: 42rem; font-weight: 700; }
+
+    .contact-card { padding: 1.4rem; background: var(--ink); color: white; }
+    .contact-card p { margin: 0; }
+    .contact-card p + p { margin-top: .48rem; }
+    .contact-card a { color: white; overflow-wrap: anywhere; }
+    .contact-label { display: inline-block; min-width: 4.6rem; color: #b8cae7; font-size: .8rem; font-weight: 700; letter-spacing: .06em; }
+
+    section.resume-section { display: grid; grid-template-columns: minmax(10rem, .28fr) minmax(0, .72fr); gap: clamp(1.5rem, 5vw, 4rem); padding: clamp(2rem, 5vw, 4rem) 0; border-top: 1px solid var(--line); }
+    .section-heading h2 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 500; line-height: 1.2; }
+    .section-body > :first-child { margin-top: 0; }
+    .section-body > :last-child { margin-bottom: 0; }
+
+    .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem 2rem; margin: 0; }
+    .facts div { padding-bottom: .7rem; border-bottom: 1px solid var(--line); }
+    dt { color: var(--muted); font-size: .8rem; font-weight: 700; letter-spacing: .05em; }
+    dd { margin: .16rem 0 0; font-weight: 650; overflow-wrap: anywhere; }
+    .note { color: var(--muted); font-size: .9rem; }
+
+    ul { margin: 0; padding-left: 1.25rem; }
+    li + li { margin-top: .7rem; }
+    .award-summary { margin: 0 0 1.2rem; padding: 1rem 1.15rem; border-left: 4px solid var(--accent); background: var(--accent-soft); font-weight: 700; }
+
+    .skill + .skill, .project + .project, .strength + .strength { margin-top: 2rem; }
+    .skill h3, .project h3, .strength h3 { margin: 0 0 .45rem; font-size: 1.08rem; line-height: 1.45; }
+    .skill p, .project p, .strength p { margin: 0; color: #2f3c52; }
+    .project-meta { margin: 0 0 .55rem !important; color: var(--accent) !important; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .project-link { display: inline-block; margin-bottom: 1.5rem; font-weight: 700; }
+
+    footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.4rem clamp(1.25rem, 4vw, 3.5rem); border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+
+    @media (max-width: 760px) {
+      .page { width: 100%; margin: 0; border: 0; box-shadow: none; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .home-link { white-space: nowrap; }
+      .hero, section.resume-section { grid-template-columns: 1fr; }
+      .hero { align-items: start; }
+      .headline { overflow-wrap: anywhere; }
+      .headline span { flex: 1 1 100%; }
+      .headline span + span::before { content: none; margin: 0; }
+      .facts { grid-template-columns: 1fr; }
+      footer { flex-direction: column; }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { width: 100%; margin: 0; border: 0; box-shadow: none; }
+      .topbar, footer { display: none; }
+      main { padding: 0; }
+      .hero { padding-top: 1rem; }
+      section.resume-section { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#top">Resume Portfolio</a>
+      <a class="home-link" href="/" lang="zh-CN">中文</a>
+    </header>
+
+    <main id="content">
+      <section class="hero" id="top">
+        <div>
+          <p class="eyebrow">Personal Resume</p>
+          <h1>Resume</h1>
+          <p class="headline"><span>Guohao College, Tongji University</span><span>Future Technology Program (Robotics)</span><span>Second-year Undergraduate</span></p>
+          <p class="research-note">Interested in embodied intelligence, computer vision, low-altitude situational awareness, and AI for Science; currently first author of a manuscript under review on artificial intelligence and lithium-metal batteries.</p>
+        </div>
+        <div class="contact-card" aria-label="Contact details">
+          <p><span class="contact-label">Email</span><a href="mailto:hejiale.ai@outlook.com">hejiale.ai@outlook.com</a></p>
+          <p><span class="contact-label">WeChat / QQ</span>1213956808</p>
+          <p><span class="contact-label">GitHub</span><a href="https://github.com/GPDdev">github.com/GPDdev</a></p>
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="profile-title">
+        <div class="section-heading">
+          <p class="section-kicker">01 · Profile</p>
+          <h2 id="profile-title">Profile</h2>
+        </div>
+        <div class="section-body">
+          <dl class="facts">
+            <div><dt>Student ID</dt><dd>2554072</dd></div>
+            <div><dt>School</dt><dd>Guohao College, Tongji University</dd></div>
+            <div><dt>Program</dt><dd>Future Technology Program (Robotics)</dd></div>
+            <div><dt>Year</dt><dd>Second-year undergraduate</dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:hejiale.ai@outlook.com">hejiale.ai@outlook.com</a></dd></div>
+          </dl>
+          <p class="note">The Future Technology Program selects students through a second-round admission process at Guohao College and provides interdisciplinary training.</p>
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="awards-title">
+        <div class="section-heading">
+          <p class="section-kicker">02 · Awards</p>
+          <h2 id="awards-title">Selected Awards</h2>
+        </div>
+        <div class="section-body">
+          <p class="award-summary">Competition experience spans programming, mathematical modeling, physics, cybersecurity, innovation, and entrepreneurship.</p>
+          <ul>
+            <li>Silver Award, Tsinghua University Programming Contest and University Invitational, non-Tsinghua undergraduate division</li>
+            <li>Bronze Medal, 2026 CCPC National Invitational, Fuzhou</li>
+            <li>Provincial Second Prize, C/C++ Programming Group A, 17th Lanqiao Cup Software Contest</li>
+            <li>S Award, 11th Shuwei Cup University Mathematical Modeling Challenge (Autumn)</li>
+            <li>Second Prize, 1st Tongji University Physics Academic Competition</li>
+            <li>Excellence Award, Innovative Physics Experiment Design Competition</li>
+            <li>Second Prize, 3rd Tongji University Cybersecurity Competition</li>
+            <li>Second Prize, 25th Tongluren Transportation Science and Technology Competition</li>
+            <li>Silver Award, 9th China International College Students' Innovation Competition, Tongji University round</li>
+            <li>Third Prize, 3rd “Yanxue Jihao” Poster Exhibition, Guohao College</li>
+            <li>During secondary school: provincial first prize in NOIP, USACO Bronze, and second prize in the Chinese Mathematical Olympiad</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <p class="section-kicker">03 · Skills</p>
+          <h2 id="skills-title">Technical Skills</h2>
+        </div>
+        <div class="section-body">
+          <article class="skill">
+            <h3>Software Development</h3>
+            <p>Proficient in Python, C++, and C; familiar with Git and Shell; working knowledge of HTML, CSS, and JavaScript. Experienced in Flask and Streamlit prototyping, GitHub deployment, API integration, video-stream processing, multiprocessing, real-time pipelines, and end-to-end engineering integration.</p>
+          </article>
+          <article class="skill">
+            <h3>AI / Deep Learning</h3>
+            <p>Completed Huawei's HCIA-AI coursework; familiar with PyTorch model training and deployment, with practical computer-vision experience using YOLO and OpenCV. Participated in VLA and embodied-intelligence projects; familiar with Stable Diffusion and TensorFlow, with hands-on experience in CNNs, RNNs, and time-series analysis.</p>
+          </article>
+          <article class="skill">
+            <h3>Simulation and Toolchains</h3>
+            <p>Familiar with Blender, Unity, and MATLAB, with experience in simulation-scene construction, UI design, and web development.</p>
+          </article>
+          <article class="skill">
+            <h3>Data Processing</h3>
+            <p>Experienced in time-series modeling and analysis; familiar with pandas, NumPy, Matplotlib, SQL, and Python web scraping for data processing, visualization, and information-system prototyping.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p class="section-kicker">04 · Projects</p>
+          <h2 id="projects-title">Selected Projects</h2>
+        </div>
+        <div class="section-body">
+          <a class="project-link" href="https://github.com/GPDdev">GitHub Profile →</a>
+
+          <article class="project">
+            <p class="project-meta">National Undergraduate Innovation and Entrepreneurship Training Program · Lead Planner</p>
+            <h3>Southwest Building 1 Digital Twin Platform</h3>
+            <p>Built a future-college community platform for Southwest Building 1 using the infrastructure digital base developed by Academician Zhu Hehua's team and Tongji University's iS3 Lab. I led proposal development, team recruitment, laboratory and faculty coordination, plan writing, API applications, Blender 3D modeling, cloud-server evaluation and deployment, and UI design. The project was later approved as a national-level undergraduate innovation project.</p>
+          </article>
+
+          <article class="project">
+            <p class="project-meta">Independent Development</p>
+            <h3>IASR System: Integrated Air Situation Recognition System</h3>
+            <p>Processes video for object detection and tracking, calculates traffic-situation indicators and congestion indices, estimates visibility from video clarity, emits events in a unified format, and routes them to operations, security, emergency response, or traffic-management recipients according to configuration. The project received third prize at Guohao College's 3rd “Yanxue Jihao” Poster Exhibition.</p>
+          </article>
+
+          <article class="project">
+            <p class="project-meta">National Undergraduate Innovation and Entrepreneurship Training Program · Team Member</p>
+            <h3>AegisDrive: World-Model-Assisted Minimum-Risk Decision System for Autonomous-Driving Failures</h3>
+            <p>Uses a dual-track architecture combining in-cabin monitoring and external perception. Eye and mouth geometry rules determine driver state, while a lightweight YOLOv8n model performs vehicle detection and monocular ranging. A world-model-based pipeline processes two video streams concurrently with Python multiprocessing and issues real-time warnings. I developed the in-cabin facial-recognition component and contributed to project documentation. The project won second prize in the freshman division of the 25th Tongluren Transportation Science and Technology Competition, was upgraded to a national-level undergraduate innovation project, and received a silver award in the Tongji University round of the 9th China International College Students' Innovation Competition.</p>
+          </article>
+
+          <article class="project">
+            <p class="project-meta">SITP Team Member · Embodied Intelligence</p>
+            <h3>QDepth-VLA: Lightweight Vision Models for Orchard Harvesting</h3>
+            <p>Generates pseudo-depth with a monocular depth model, discretizes it into depth tokens through a VQ-VAE, and injects geometric information into the VLA backbone through a Depth Expert and Hybrid Attention. Using only a standard RGB camera, the project validates a closed-loop recognition–localization–harvesting prototype in simulation and on a desktop robotic arm. I handled early literature research, faculty and laboratory coordination, harvesting-method analysis, and robotic-arm development. The work combines two SITP undergraduate innovation projects and is competing in the 15th Challenge Cup Chinese College Students' Entrepreneurship Competition.</p>
+          </article>
+
+          <article class="project">
+            <p class="project-meta">Independent Development · Time-Series Analysis</p>
+            <h3>Multimodal Cockpit Seat-Pressure Analysis System</h3>
+            <p>Analyzes pressure trends, stability indicators, and temporal features in cockpit seat-pressure sensor data across different body-weight groups, providing data support for seat-design optimization and ergonomics research. Uses pandas, NumPy, and Matplotlib for data processing, numerical computation, and visualization.</p>
+          </article>
+
+          <article class="project">
+            <p class="project-meta">Development Team Member · Data Systems</p>
+            <h3>Global University Faculty Information System</h3>
+            <p>Proposed and supported with data by the APJIE journal at the Shanghai International College of Intellectual Property. Built with Python web scraping and an SQL database, the system supports queries by age, institution, research output, and other dimensions.</p>
+          </article>
+
+          <article class="project">
+            <p class="project-meta">First Author · Manuscript Under Review</p>
+            <h3>AI-Based Analysis and Prediction of Lithium-Dendrite Growth in Lithium-Metal Batteries</h3>
+            <p>Constructed a multimodal dataset containing scanning-electron-microscope images, electrochemical time series, and electrolyte and interface descriptors. Used CNNs for dendrite morphology recognition and grading, convolutional and recurrent neural networks to predict polarization voltage and overpotential fluctuations, and regression models to analyze relationships among electrolyte composition, transport properties, and dendrite growth, providing an interpretable screening approach for safer lithium-metal battery design.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="strengths-title">
+        <div class="section-heading">
+          <p class="section-kicker">05 · Strengths</p>
+          <h2 id="strengths-title">Personal Strengths</h2>
+        </div>
+        <div class="section-body">
+          <article class="strength">
+            <h3>Academic Foundation</h3>
+            <p>Won a provincial first prize in informatics during secondary school; scored 146 in English on the National College Entrance Examination and 550+ on CET-6. Participated in the Oxford Prospects Programme and the Hong Kong Polytechnic University Summer School, gaining experience in academic English communication.</p>
+          </article>
+          <article class="strength">
+            <h3>Research and Innovation</h3>
+            <p>Selected for Tongji University's “Innovation and Entrepreneurship+” pilot program and the Shanghai Angel Association University Youth Innovation Camp. Completed research internships at Tongji's XAI Lab Intelligent Experience Laboratory and iS3-Lab Digital Campus Scenario Laboratory, and contributed to the APJIE journal's big-data system. Participated in programs and events organized by Huawei, Tencent, Baidu, ByteDance, EY, Shanghai Innovation Institute, and Shenzhen Hetao College.</p>
+          </article>
+          <article class="strength">
+            <h3>Leadership and Community Engagement</h3>
+            <p>Founded and managed Guohao College discussion groups, competition groups, and an AI foundation-model community, and operated the Future Technology Program's WeChat public account. Experienced in community operations and public relations. Named a 2025 “Mingde Star” by Guohao College and nominated at university level for the Excellence Star Scholarship; received awards in photography, sports, writing, and public-speaking competitions. Completed more than 50 hours of university volunteer service and led an A-rated social-practice project.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Resume Portfolio</span>
+      <a href="https://home.hachile.org/en/">Visit home.hachile.org →</a>
+    </footer>
+  </div>
+</body>
+</html>
